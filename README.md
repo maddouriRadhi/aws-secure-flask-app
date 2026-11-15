@@ -126,3 +126,30 @@ Au premier lancement, un administrateur par défaut est créé automatiquement.
 ├── .env.example             # Template des clés secrètes
 └── requirements.txt         # Dépendances Python
 ```
+## ☁️ Architecture AWS
+
+
+L'application Flask est déployée sur une infrastructure AWS sécurisée et hautement disponible.
+
+### Réseau
+- **VPC** `10.0.0.0/16` réparti sur deux zones de disponibilité (A et B)
+- **Sous-réseaux publics** : Application Load Balancer, Bastion Host (SSH), NAT Gateway
+- **Sous-réseaux privés applicatifs** : instances EC2 (Flask + Gunicorn) en Auto Scaling
+- **Sous-réseaux privés isolés** : base de données, sans accès direct depuis Internet
+
+### Sécurité
+- **AWS WAF** devant l'Application Load Balancer
+- **HTTPS (443)** avec certificat ACM
+- **Security Groups** et principe du moindre privilège
+- **AWS KMS** : chiffrement de la base de données
+- Accès d'administration uniquement via le **Bastion Host** (SSH)
+
+### Haute disponibilité
+- **Auto Scaling Group** sur deux zones de disponibilité
+- **Amazon RDS PostgreSQL en Multi-AZ** avec réplication
+
+### Supervision et détection
+- **CloudTrail** : journaux d'audit
+- **GuardDuty** : détection des menaces
+- **CloudWatch** : métriques et alarmes
+- **EventBridge + SNS** : alertes par e-mail à l'administrateur
