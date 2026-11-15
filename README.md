@@ -1,7 +1,7 @@
 # 🛡️ Système Sécurisé d'Authentification et de Cryptographie
 ![Architecture AWS](architecture.png)
 
-Projet universitaire implémentant une application web sécurisée complète avec gestion d'authentification robuste, chiffrement de données, et contrôle d'accès basé sur les rôles (RBAC).
+Projet professionnel  implémentant une application web sécurisée complète avec gestion d'authentification robuste, chiffrement de données, et contrôle d'accès basé sur les rôles (RBAC).
 
 ## 🚀 Fonctionnalités Implémentées
 
